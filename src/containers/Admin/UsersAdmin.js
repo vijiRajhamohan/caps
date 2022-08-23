@@ -9,7 +9,7 @@ const UserAdmin = () => {
   
     const getUsers = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/api/user/find");
+        const res = await axios.get("https://pettishopnew.herokuapp.com/api/user/find");
 
         setUsers(res.data);
         console.log(res.data);
@@ -28,7 +28,7 @@ const UserAdmin = () => {
   const deleteUser = async ({ _id }) => {
     if (window.confirm(`Are You Sure You Want to Delete user ${_id}`)) {
       try {
-        await axios.delete(`http://localhost:5000/api/user/${_id}`, {
+        await axios.delete(`https://pettishopnew.herokuapp.com/api/user/${_id}`, {
           _id,
         });
         alert("Deleted Successfully");

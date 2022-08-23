@@ -48,7 +48,7 @@ function Login() {
               onSubmit={async (values) => {
                 // api call
                 try {
-                  const url = "http://localhost:5000/api/login";
+                  const url = "https://pettishopnew.herokuapp.com/api/login";
                   const { data } = await axios.post(url, values);
 
                   window.localStorage.setItem("accessToken", data);

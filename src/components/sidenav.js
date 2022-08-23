@@ -7,7 +7,7 @@ function sidenav() {
       <div>
         <div>
           <Link to="/category">
-            <span className="d-flex">
+            <span className="d-flex" style={{ fontSize: "20px" }}>
               <box-icon name="menu"></box-icon>All Category
             </span>
           </Link>
@@ -16,7 +16,7 @@ function sidenav() {
         <div>
           <div className="pt-5 ">
             {categories.map((item) => (
-              <ul style={{ listStyleType: "none" }}>
+              <ul style={{ listStyleType: "none" ,fontSize:"20px"}}>
                 <li className="cat-item ">
                   <Link to={`/productsList/${item.cat}`}>
                     <i class="bx bxs-hand-right">{item.cat}</i>

@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import { useEffect } from "react";
 
-import { Link, useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 import AdminNav from "../../components/AdminNav";
 import { useParams } from "react-router-dom";
 
@@ -14,7 +14,7 @@ const ProductsAdmin = () => {
   const update = async () => {
     try {
       const { data } = await axios.put(
-        `http://localhost:5000/api/productsDetails/${id}`
+        `https://pettishopnew.herokuapp.com/api/productsDetails/${id}`
       );
       setFood(data);
     } catch (error) {
@@ -32,7 +32,7 @@ const ProductsAdmin = () => {
   // Get all Products
   const getProducts = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/productsLists");
+      const res = await axios.get("https://pettishopnew.herokuapp.com/api/productsLists");
       setProducts(res.data);
       console.log(res.data);
     } catch {
@@ -47,7 +47,7 @@ const ProductsAdmin = () => {
   const deleteProduct = async ({ _id }) => {
     if (window.confirm(`Are You Sure You Want to Delete this Product ${_id}`)) {
       try {
-        await axios.delete(`http://localhost:5000/api/productsDetails/${_id}`, {
+        await axios.delete(`https://pettishopnew.herokuapp.com/api/productsDetails/${_id}`, {
           _id,
         });
         alert("Deleted Successfully");
@@ -96,7 +96,7 @@ const ProductsAdmin = () => {
                             color="blue"
                           ></span>
                         </button>
-                        {/* </Link> */}
+                       
                         <span>
                           {" "}
                           <button
@@ -112,7 +112,7 @@ const ProductsAdmin = () => {
                       </div>
                     </td>
 
-                    {/* <td></td> */}
+                  
                   </tr>
                 );
               })}

@@ -7,15 +7,15 @@ import AdminNav from "../../components/AdminNav";
 
 const OrdersAdmin = () => {
   const navigate = useNavigate();
-  const authToken = window.localStorage.getItem("authToken");
+  const accessToken = window.localStorage.getItem("accessToken");
 
   const [orders, setOrder] = useState({});
 
   const getorder = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/order", {
+      const res = await axios.get("https://pettishopnew.herokuapp.com/api/order", {
         headers: {
-          Authorization: `Bearer ${authToken}`,
+          Authorization: `Bearer ${accessToken}`,
         },
       });
 
@@ -40,13 +40,13 @@ const OrdersAdmin = () => {
             <tr>
               <th>UserId</th>
               <th>OrderId</th>
-              <th>ProductName</th>
+              {/* <th>ProductName</th>
               <th>Category</th>
               <th>Quantity</th>
-              <th>Price</th>
+              <th>Price</th> */}
               <th>Total</th>
               <th>Status</th>
-              {/* <th>Action</th> */}
+              <th>Action</th>
             </tr>
           </thead>
 
@@ -57,23 +57,23 @@ const OrdersAdmin = () => {
                   <tr>
                     <td>{data.userId}</td>
                     <td>{data._id}</td>
-                    <td>{data.product[0].name}</td>
+                    {/* <td>{data.product[0].name}</td>
                     <td>{data.product[0].category}</td>
                     <td>{data.product[0].quantity}</td>
-                    <td>{data.product[0].price}</td>
+                    <td>{data.product[0].price}</td> */}
                     <td>{data.total}</td>
                     <td>Delivered</td>
-                    {/* <td>
+                    <td>
                       <button
                       className="btn btn-outline-white border-0"
-                      onClick={() => navigate("/userorderinfo/" + data.userId)}
+                        onClick={() => navigate("/orderadmininfo/" + data._id)}
                     >
                       <span
                         class="iconify text-info"
                         data-icon="bi:info-circle-fill"
                       ></span>
                     </button>
-                    </td> */}
+                    </td>
                     
                   </tr>
                 );

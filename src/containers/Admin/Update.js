@@ -13,7 +13,7 @@ export function Update() {
     // edit food api call
     const update = async () => {
         try {
-            const { data } = await axios.get(`http://localhost:5000/api/productsLists/${id}`);
+            const { data } = await axios.get(`https://pettishopnew.herokuapp.com/api/productsLists/${id}`);
             setFood(data);
         } catch (error) {
             console.log(error.message);
@@ -91,7 +91,7 @@ export function EditFoodForm({ food }) {
             price: price,
 
         };
-        fetch(`http://localhost:5000/api/productsDetails/${food._id}`, {
+        fetch(`https://pettishopnew.herokuapp.com/api/productsDetails/${food._id}`, {
             method: "PUT",
             body: JSON.stringify(updateFood),
             headers: {

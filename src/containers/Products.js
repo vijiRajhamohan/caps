@@ -18,8 +18,8 @@ function Products() {
       try {
         const res = await axios.get(
           cat
-            ? `http://localhost:5000/api/productsList?category=${cat}`
-            : "http://localhost:5000/api/productsLists"
+            ? `https://pettishopnew.herokuapp.com/api/productsList?category=${cat}`
+            : "https://pettishopnew.herokuapp.com/api/productsLists"
         );
         setProduct(res.data);
       } catch (err) {
@@ -97,7 +97,7 @@ function Products() {
                                 </p>
                               </div>
 
-                              <button className="btn btn-warning">
+                              <button className="btn btn-success">
                                 Buy Now
                               </button>
                             </Link>
@@ -133,7 +133,7 @@ function Products() {
                                 </p>
                               </div>
 
-                              <button className="btn btn-warning">
+                              <button className="btn btn-success">
                                 Buy Now
                               </button>
                             </Link>

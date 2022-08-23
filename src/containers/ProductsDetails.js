@@ -16,7 +16,7 @@ const ProductsDetails = () => {
     const getProducts = async () => {
       try {
         const res = await axios.get(
-          "http://localhost:5000/api/productsLists/" + path
+          "https://pettishopnew.herokuapp.com/api/productsLists/" + path
         );
         setProduct(res.data);
         console.log(res.data);

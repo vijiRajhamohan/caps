@@ -16,17 +16,20 @@ import Feed from "../containers/Feed";
 import Policy from "../containers/Policy";
 import NewPassword from "../containers/NewPassword";
 import OrderHistory from "../containers/OrderHistory";
+import { UserOrderInfo } from "../containers/UserOrderInfo";
 import UpdateProfile from "../containers/UpdateProfile";
-import Success from "../containers/Success";
 import MyProfile from "../containers/MyProfile";
 
 import Admin from "../containers/Admin/Admin";
 import ProductsAdmin from "../containers/Admin/ProductsAdmin";
-import OrdersAdmin from "../containers/Admin/OrdersAdmin";
-import UsersAdmin from "../containers/Admin/UsersAdmin";
-import AdminProducts from "../containers/Admin/AdminProducts";
 import { Update } from "../containers/Admin/Update";
-import { UserOrderInfo } from "../containers/Admin/UserOrderInfo";
+import AdminProducts from "../containers/Admin/AdminProducts";
+import OrdersAdmin from "../containers/Admin/OrdersAdmin";
+
+import UsersAdmin from "../containers/Admin/UsersAdmin";
+import { OrderAdminInfo } from "../containers/Admin/OrderAdminInfo";
+
+
 
 function routing() {
   return (
@@ -48,18 +51,20 @@ function routing() {
         <Route path={"/feed"} element={<Feed />} />
         <Route path={"/policy"} element={<Policy />} />
         <Route path={"/newPassword"} element={<NewPassword />} />
-        <Route path={"/updateprofile"} element={<UpdateProfile />} />
         <Route path={"/orderhistory"} element={<OrderHistory />} />
-        <Route path={"/success"} element={<Success />} />
+        <Route path={"/userorderinfo/:id"} element={<UserOrderInfo />} /> 
         <Route path={"/myprofile"} element={<MyProfile />} />
+        <Route path={"/updateprofile/edit/:id"} element={<UpdateProfile />} />
 
         <Route path={"/admin"} element={<Admin />} />
         <Route path={"/productsadmin"} element={<ProductsAdmin />} />
         <Route path={"/update/edit/:id"} element={<Update />} />
         <Route path={"/adminproducts"} element={<AdminProducts />} />
-        <Route path={"/ordersadmin"} element={<OrdersAdmin />} />
         <Route path={"/usersadmin"} element={<UsersAdmin />} />
-        <Route path={"/userorderinfo/:id"} element={<UserOrderInfo />} /> 
+        <Route path={"/ordersadmin"} element={<OrdersAdmin />} />
+        <Route path={"/orderadmininfo/:id"} element={<OrderAdminInfo/> } /> 
+       
+       
       </Routes>
     </div>
   );

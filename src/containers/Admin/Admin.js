@@ -32,7 +32,7 @@ function Admin() {
           <div className="col-md-6 col-lg-6 col-xl-4 offset-xl-1">
             <h3 className="mb-5 text-uppercase">Admin Login</h3>
 
-            {/* Formik validation */}
+           
             <Formik
               initialValues={{
                 email: "",
@@ -40,9 +40,9 @@ function Admin() {
               }}
               validationSchema={loginSchema}
               onSubmit={async (values) => {
-                // api call
+               
                 try {
-                  const url = "http://localhost:5000/api/admin/login";
+                  const url = "https://pettishopnew.herokuapp.com/api/admin/login";
                   const { data } = await axios.post(url, values);
 
                   window.localStorage.setItem("accessToken", data);
@@ -57,7 +57,7 @@ function Admin() {
               {({ errors, touched }) => (
                 <Form>
                   <div className="d-flex align-items-center input-field mb-4">
-                    {/* email */}
+                   
                     <span className="bx bx-user-circle"></span>
 
                     <Field
@@ -72,7 +72,7 @@ function Admin() {
                       {errors.email}
                     </span>
                   ) : null}
-                  {/* Password */}
+                 
                   <div className="d-flex align-items-center input-field mb-4">
                     <span className="bx bx-user-circle"></span>
                     <Field
@@ -90,7 +90,7 @@ function Admin() {
                       {errors.password}
                     </span>
                   ) : null}
-                  {/* submit button */}
+               
 
                   <div className="text-center text-lg-start mt-4 pt-2">
                     <button

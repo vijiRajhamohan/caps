@@ -44,7 +44,7 @@ function AdminProducts() {
   const handlesubmit = async (e) => {
     e.preventDefault();
     try {
-      const url = "http://localhost:5000/api/products";
+      const url = "https://pettishopnew.herokuapp.com/api/products";
       const res = await axios.post(url, user);
       console.log(res);
       alert("Products added successfully");
@@ -132,6 +132,7 @@ function AdminProducts() {
                             <option value="PoojaItems">PoojaItems</option>
                           </select>
                         </div>
+                        
                         <div className="mb-4">
                           <div className="row">
                             <div className="col">

@@ -21,7 +21,7 @@ const Home = () => {
           <div className="row">
             <Deals />
           </div>
-          <div className="row">
+          <div className="row pb-5">
             <Recent />
           </div>
         </div>

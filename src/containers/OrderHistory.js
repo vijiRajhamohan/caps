@@ -1,112 +1,102 @@
-// import files
 import React, { useEffect } from "react";
-import Navigation from '../components/Navigation'
+import Navigation from "../components/Navigation";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 
-
-
-// my orders page
 export default function OrderHistory() {
-    // authToken
-    const accessToken = window.localStorage.getItem("accessToken");
+  // authToken
+  const accessToken = window.localStorage.getItem("accessToken");
 
-    // navigate to page
-    const navigate = useNavigate();
+ 
+  const navigate = useNavigate();
 
-    // user details state management
-    const [myOrders, setMyOrders] = useState([]);
+  const [myOrders, setMyOrders] = useState([]);
 
-    // Search orders
-    const [query, setQuery] = useState("");
 
-    // Initial Loading Page
-    const [isLoading, setIsLoading] = useState(true);
+  // const [query, setQuery] = useState("");
 
-    // get userById from authToken
-    function parseJwt(token) {
-        var base64Url = token.split(".")[1];
-        var base64 = decodeURIComponent(
-            atob(base64Url)
-                .split("")
-                .map((c) => {
-                    return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
-                })
-                .join("")
-        );
-        return JSON.parse(base64);
+  // Initial Loading Page
+  // const [isLoading, setIsLoading] = useState(true);
+
+  // get userById from authToken
+  function parseJwt(token) {
+    var base64Url = token.split(".")[1];
+    var base64 = decodeURIComponent(
+      atob(base64Url)
+        .split("")
+        .map((c) => {
+          return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
+        })
+        .join("")
+    );
+    return JSON.parse(base64);
+  }
+  let a = parseJwt(accessToken);
+  let userId = a._id;
+
+  // get userById Orders
+  const getUserById = async () => {
+    try {
+      const { data } = await axios.get(
+        `https://pettishopnew.herokuapp.com/api/order/find/${userId}`
+      );
+      setMyOrders(data);
+      //   console.log(data);
+      // setIsLoading(false);
+    } catch (error) {
+      console.log(error.message);
     }
-    let a = parseJwt(accessToken);
-    let userId = a._id;
+  };
 
-    // get userById Orders
-    const getUserById = async () => {
-        try {
-            const { data } = await axios.get(`http://localhost:5000/api/order/find/${userId}`);
-            setMyOrders(data);
-            console.log(data)
-            setIsLoading(false);
-        } catch (error) {
-            console.log(error.message);
-        }
-    };
+  // Call function useEffect
+  useEffect(() => {
+    getUserById();
+  }, []);
 
-    // Call function useEffect
-    useEffect(() => {
-        getUserById();
-    }, []);
+  return (
+    <>
+      <Navigation />
 
-    return (
-        <>
-            <Navigation />
-
-            <div className="container">
-                <table className="table">
-                    <thead >
-                        <tr>
-                            <th>ORDER ID</th>
-                            <th>User ID</th>
-                            <th>ProductID</th>
-                            <th>Category</th>
-                            <th>Quantity</th>
-                            <th>PRICE</th>
-                            <th>Total</th>
-                            <th>STATUS</th>
-                            <th>Action</th>
-                            
-
-                        </tr>
-                    </thead>
-                    <div className="text-center">
-              {" "}
-              {isLoading && (
-                <div className="text-center">
-                  <img
+      <div className="container">
+        <table className="table">
+          <thead>
+            <tr>
+              <th>ORDER ID</th>
+              <th>Total</th>
+              <th>STATUS</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <div className="text-center">
+            {" "}
+            {/* {isLoading && (
+              <div className="text-center">
+                <img
                   className="text-center"
-                    src="https://i.stack.imgur.com/hzk6C.gif"
-                    alt=""
-                  />
-                </div>
-              )}
-            </div>
-                    <tbody>
-                        {myOrders.map((u, index) => {
-                            return (
-                                <tr key={index}>
-                                    <td>{u._id}</td>
-                                    <td>{u.userId}</td>
-                                    <td>{u.product[0]._id}</td>
+                  src="https://i.stack.imgur.com/hzk6C.gif"
+                  alt=""
+                />
+              </div>
+            )} */}
+          </div>
+          <tbody>
+            {myOrders.map((u, index) => {
+              return (
+                <tr key={index}>
+                  <td>{u._id}</td>
+                  {/* <td>{u.userId}</td> */}
+                  {/* <td>{u.product[0]._id}</td>
                                     <td>{u.product[0].category }</td>
                                     <td>{u.product[0].quantity}</td>
-                                    <td>{u.product[0].price}</td>
-                                    <td>{u.total}</td>
-                                    <td>deliverded</td>
-                                   
-                                    <td className="d-flex gap-2 justify-content-center">
+                                    <td>{u.product[0].price}</td> */}
+                  <td>{u.total}</td>
+                  <td>deliverded</td>
+
+                  <td className="d-flex gap-2 justify-content-center">
                     <button
                       className="btn btn-outline-white border-0"
-                      onClick={() => navigate("/userOrdersInfo/" + u._id)}
+                      onClick={() => navigate("/userorderinfo/" + u._id)}
                     >
                       <span
                         class="iconify text-info"
@@ -114,23 +104,15 @@ export default function OrderHistory() {
                       ></span>
                     </button>
                   </td>
-                                </tr>
-                            );
-                        })}
-                    </tbody>
-                </table>
-            </div>
-
-        </>
-    );
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+    </>
+  );
 }
-
-
-
-
-
-
-
 
 // import React from 'react'
 // import Navigation from '../components/Navigation'
@@ -166,7 +148,7 @@ export default function OrderHistory() {
 //               </table>
 //           </div>
 //       </div>
-  
+
 //   )
 // }
 

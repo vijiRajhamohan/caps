@@ -55,7 +55,7 @@ const Cart = () => {
   useEffect(() => {
     const makeRequest = async () => {
       try {
-        const res = await axios.post("http://localhost:5000/api/payment", {
+        const res = await axios.post("https://pettishopnew.herokuapp.com/api/payment", {
           tokenId: stripeToken.id,
           amount: { total },
         });
@@ -71,7 +71,7 @@ const Cart = () => {
   // Order Api
   const getOrders = async () => {
     try {
-      const res = await axios.post(`http://localhost:5000/api/order`, {
+      const res = await axios.post(`https://pettishopnew.herokuapp.com/api/order`, {
         userId,
         product,
         total,
@@ -87,8 +87,8 @@ const Cart = () => {
   }, []);
 
   // remove from cart
-  const handleRemove = () => {
-    dispatch(removeProduct({ product, price: product.price, quantity, total }));
+  const handleRemove = (index) => {
+    dispatch(removeProduct({ index, price: product[index].price, quantity, total }));
   };
 
 
@@ -133,9 +133,9 @@ const Cart = () => {
               <h5>Cart-Items: {cart.quantity}</h5>
               <table className="table table-light table-hover  m-0">
                 <tbody>
-                  {cart.products.map((product) => {
+                  {cart.products.map((product, index) => {
                     return (
-                      <tr key={product.id}>
+                      <tr key={index}>
                         <td>
                           <img
                             src={product.image}
@@ -216,7 +216,7 @@ const Cart = () => {
                       </button> */}
                           <button
                             className="btn btn-danger ms-2 "
-                            onClick={handleRemove}
+                            onClick={() => handleRemove(index)}
                           >
                             <span
                               class="iconify"

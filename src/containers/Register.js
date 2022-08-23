@@ -76,7 +76,7 @@ function Register() {
                 //     name: `"Hi", ${values.fullname}`,
                 //   };
                 try {
-                  const url = "http://localhost:5000/api/register";
+                  const url = "https://pettishopnew.herokuapp.com/api/register";
                   const res = await axios.post(url, values);
                   console.log(res);
                   alert("Register Successfully");
